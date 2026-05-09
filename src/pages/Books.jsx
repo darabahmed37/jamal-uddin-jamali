@@ -40,36 +40,43 @@ function Books() {
         {filteredBooks.map((book) => (
           <motion.article
             key={book.slug}
-            className="overflow-hidden rounded-[2rem] border border-card-border bg-cream-alt p-6 shadow-soft transition hover:border-gold h-full min-h-[26rem]"
+            className="flex flex-col mx-auto w-full max-w-[640px] bg-[#ffffff] border border-[#e8e0d0] rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.08)] p-[20px] transition hover:border-gold h-full min-h-[26rem]"
             variants={{
               hidden: { opacity: 0, y: 20 },
               visible: { opacity: 1, y: 0 },
             }}
           >
-            <div className="flex flex-col gap-6 lg:flex-row lg:items-start h-full">
-              <div className="flex-shrink-0 overflow-hidden rounded-3xl aspect-[2/3] w-[180px] lg:w-[200px]">
+            <div className="flex flex-col gap-[24px] lg:flex-row lg:items-center h-full">
+              <div className="flex-shrink-0 overflow-hidden rounded-[10px] shadow-[0_6px_20px_rgba(0,0,0,0.18)] aspect-[2/3] w-[180px] self-center my-auto">
                 <img
                   src={book.coverImage}
                   alt={book.title}
                   className="h-full w-full object-cover"
                 />
               </div>
-              <div className="book-info space-y-4">
+              <div className="book-info">
                 <div>
-                  <p className="inline-block rounded-xl bg-genre-bg px-3 py-1 text-xs uppercase tracking-[0.3em] text-genre-text">{book.genre.join(' · ')}</p>
-                  <h2 className="mt-3 text-2xl font-semibold text-midnight-navy">
+                  <div className="flex flex-wrap gap-[6px]">
+                    {book.genre.map((g) => (
+                      <span key={g} className="bg-[#f5f0e8] text-[#6b4c3b] text-[10px] font-semibold tracking-[0.06em] px-[10px] py-[4px] rounded-[20px] uppercase">
+                        {g}
+                      </span>
+                    ))}
+                  </div>
+                  <h2 className="mt-[8px] text-[20px] font-bold text-[#1a1a2e] leading-[1.3]">
                     {book.title}
                   </h2>
                 </div>
-                <div className="space-y-4">
-                  <p className="text-sm leading-7 text-slate-600">{book.shortDescription}</p>
+                <div className="mt-[8px] text-[13px] text-[#5f5e5a] leading-[1.6] line-clamp-3">
+                  {book.shortDescription}
                 </div>
+                <div className="h-px w-full bg-[#f0ece4] my-[14px]"></div>
                 <div className="book-card-buttons">
                   <a
                     href={book.buyLinks?.amazon || '#'}
                     target="_blank"
                     rel="noreferrer"
-                    className="book-card-btn bg-midnight-navy text-gold hover:opacity-80 transition"
+                    className="book-card-btn bg-[#1a1a2e] text-[#e8c468]"
                   >
                     Amazon
                   </a>
@@ -77,7 +84,7 @@ function Books() {
                     href={book.buyLinks?.goodreads || '#'}
                     target="_blank"
                     rel="noreferrer"
-                    className="book-card-btn bg-goodreads text-[#b7e4c7] hover:opacity-80 transition"
+                    className="book-card-btn bg-[#2d6a4f] text-[#b7e4c7]"
                   >
                     Goodreads
                   </a>
@@ -85,7 +92,7 @@ function Books() {
                     href={book.buyLinks?.kindle || '#'}
                     target="_blank"
                     rel="noreferrer"
-                    className="book-card-btn bg-cream-alt text-midnight-navy border border-card-border hover:opacity-80 transition"
+                    className="book-card-btn bg-[#f5f0e8] text-[#1a1a2e] border border-[#d4c9b0]"
                   >
                     Kindle
                   </a>
