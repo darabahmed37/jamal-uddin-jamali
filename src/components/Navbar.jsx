@@ -60,7 +60,7 @@ function Navbar({ authorName, books, upcoming, searchTerm, setSearchTerm }) {
   )
 
   return (
-    <header className="sticky top-0 z-40 border-b border-midnight-navy bg-midnight-navy backdrop-blur-xl">
+    <header className="relative sticky top-0 z-40 border-b border-midnight-navy bg-midnight-navy backdrop-blur-xl">
       <div className="hidden items-center justify-between bg-steel-blue px-4 py-3 text-cream-alt sm:flex sm:px-6 lg:px-8">
         <div className="flex items-center gap-4 text-xs uppercase tracking-[0.32em] text-cream-alt/80">
           <span className="text-cream-alt">Get new book alerts, news & more!</span>
@@ -177,41 +177,77 @@ function Navbar({ authorName, books, upcoming, searchTerm, setSearchTerm }) {
       )}
 
       {menuOpen && (
-        <div className="border-t border-midnight-navy bg-steel-blue px-4 py-4 sm:px-6 lg:px-8 md:hidden">
-          <div className="space-y-3">
-            <NavLink to="/" className={activeClass} onClick={() => setMenuOpen(false)} end>
-              Home
-            </NavLink>
-            <button
-              type="button"
-              className="flex items-center gap-2 text-sm font-medium text-cream-alt hover:text-gold"
-              onClick={() => setDropdownOpen((open) => !open)}
-            >
-              Books
-              <FontAwesomeIcon icon={faChevronDown} className="h-3.5 w-3.5 ml-2" />
-            </button>
-            {dropdownOpen && (
-              <ul className="space-y-1 pl-4">
-                {bookItems}
-                {upcoming && (
-                  <li className="mt-2 rounded-lg bg-midnight-navy/80 px-3 py-2 text-sm text-cream-alt opacity-70 pointer-events-none">
-                    <div className="flex items-center justify-between gap-3">
-                      <span>{upcoming.title}</span>
-                      <span className="rounded-full bg-[#fdf3d0] px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#c9a43a]">
-                        Soon
-                      </span>
-                    </div>
-                  </li>
-                )}
-              </ul>
-            )}
-            <NavLink to="/about" className={activeClass} onClick={() => setMenuOpen(false)}>
-              About
-            </NavLink>
-            <NavLink to="/contact" className={activeClass} onClick={() => setMenuOpen(false)}>
-              Contact
-            </NavLink>
-          </div>
+        <div className="absolute left-0 right-0 top-full z-[999] w-full border-t border-[rgba(232,196,104,0.2)] bg-[#1a1a2e] py-4 md:hidden">
+          {/* Home */}
+          <NavLink
+            to="/"
+            end
+            onClick={() => setMenuOpen(false)}
+            className={({ isActive }) =>
+              `block w-full py-[14px] px-6 text-center text-[15px] tracking-[0.03em] transition ${
+                isActive ? 'font-semibold text-[#e8c468]' : 'text-[#f5f0e8] hover:bg-[rgba(232,196,104,0.06)] hover:text-[#e8c468]'
+              }`
+            }
+          >
+            Home
+          </NavLink>
+
+          {/* Books toggle */}
+          <button
+            type="button"
+            onClick={() => setDropdownOpen((open) => !open)}
+            className="flex w-full items-center justify-center gap-2 py-[14px] px-6 text-center text-[15px] tracking-[0.03em] text-[#f5f0e8] transition hover:bg-[rgba(232,196,104,0.06)] hover:text-[#e8c468]"
+          >
+            Books
+            <FontAwesomeIcon icon={faChevronDown} className={`h-3 w-3 transition-transform ${dropdownOpen ? 'rotate-180' : ''}`} />
+          </button>
+
+          {/* Books sub-items */}
+          {dropdownOpen && (
+            <div className="border-y border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.04)]">
+              {books.map((book) => (
+                <NavLink
+                  key={book.slug}
+                  to={`/books/${book.slug}`}
+                  onClick={() => { setMenuOpen(false); setDropdownOpen(false) }}
+                  className="block w-full py-[10px] px-6 text-center text-[13px] text-[#a8a8b8] transition hover:text-[#e8c468]"
+                >
+                  {book.title}
+                </NavLink>
+              ))}
+              {upcoming && (
+                <div className="w-full py-[10px] px-6 text-center text-[13px] text-[#a8a8b8] opacity-50 pointer-events-none">
+                  {upcoming.title} <span className="ml-2 text-[10px] uppercase tracking-[0.2em] text-[#e8c468]">(Soon)</span>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* About */}
+          <NavLink
+            to="/about"
+            onClick={() => setMenuOpen(false)}
+            className={({ isActive }) =>
+              `block w-full py-[14px] px-6 text-center text-[15px] tracking-[0.03em] transition ${
+                isActive ? 'font-semibold text-[#e8c468]' : 'text-[#f5f0e8] hover:bg-[rgba(232,196,104,0.06)] hover:text-[#e8c468]'
+              }`
+            }
+          >
+            About
+          </NavLink>
+
+          {/* Contact */}
+          <NavLink
+            to="/contact"
+            onClick={() => setMenuOpen(false)}
+            className={({ isActive }) =>
+              `block w-full py-[14px] px-6 text-center text-[15px] tracking-[0.03em] transition ${
+                isActive ? 'font-semibold text-[#e8c468]' : 'text-[#f5f0e8] hover:bg-[rgba(232,196,104,0.06)] hover:text-[#e8c468]'
+              }`
+            }
+          >
+            Contact
+          </NavLink>
         </div>
       )}
     </header>
