@@ -33,7 +33,9 @@ export const data = {
       "featured": false,
       "buyLinks": {
         "amazon": "https://www.amazon.com/dp/B01DEQYM96",
-        "goodreads": "https://www.goodreads.com/book/show/29616382-the-sin-of-killing"
+        "goodreads": "https://www.goodreads.com/book/show/29616382-the-sin-of-killing",
+        "kindle": "#",
+        "paperback": "https://www.amazon.com/Sin-Killing-Jamaluddin-Jamali/dp/1540672735"
       },
       "editorialReview": {
         "text": "The setting is Pakistan and the book is rich in that country's culture... a great read with a twist in the tail.",

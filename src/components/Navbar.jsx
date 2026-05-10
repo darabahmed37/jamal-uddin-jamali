@@ -45,17 +45,35 @@ function Navbar({ authorName, books, upcoming, searchTerm, setSearchTerm }) {
 
   const bookItems = useMemo(
     () =>
-      books.map((book) => (
-        <li key={book.slug}>
-          <Link
-            to={`/books/${book.slug}`}
-            className="block rounded-lg px-3 py-2 text-sm text-cream-alt transition hover:bg-midnight-navy hover:text-gold"
-            onClick={() => { setMenuOpen(false); setDropdownOpen(false); }}
-          >
-            {book.title}
-          </Link>
-        </li>
-      )),
+      books.flatMap((book) => {
+        const items = [
+          <li key={book.slug}>
+            <Link
+              to={`/books/${book.slug}`}
+              className="block rounded-lg px-3 py-2 text-sm text-cream-alt transition hover:bg-midnight-navy hover:text-gold"
+              onClick={() => { setMenuOpen(false); setDropdownOpen(false); }}
+            >
+              {book.title}
+            </Link>
+          </li>
+        ];
+        if (book.buyLinks && book.buyLinks.paperback) {
+          items.push(
+            <li key={`${book.slug}-paperback`}>
+              <a
+                href={book.buyLinks.paperback}
+                target="_blank"
+                rel="noreferrer"
+                className="block rounded-lg px-3 py-2 text-sm text-cream-alt/70 transition hover:bg-midnight-navy hover:text-gold"
+                onClick={() => { setMenuOpen(false); setDropdownOpen(false); }}
+              >
+                {book.title} (Paperback)
+              </a>
+            </li>
+          );
+        }
+        return items;
+      }),
     [books],
   )
 
@@ -224,16 +242,33 @@ function Navbar({ authorName, books, upcoming, searchTerm, setSearchTerm }) {
           {/* Books sub-items */}
           {dropdownOpen && (
             <div className="border-y border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.04)]">
-              {books.map((book) => (
-                <NavLink
-                  key={book.slug}
-                  to={`/books/${book.slug}`}
-                  onClick={() => { setMenuOpen(false); setDropdownOpen(false) }}
-                  className="block w-full py-[10px] px-6 text-center text-[13px] text-[#a8a8b8] transition hover:text-[#e8c468]"
-                >
-                  {book.title}
-                </NavLink>
-              ))}
+              {books.flatMap((book) => {
+                const items = [
+                  <NavLink
+                    key={book.slug}
+                    to={`/books/${book.slug}`}
+                    onClick={() => { setMenuOpen(false); setDropdownOpen(false) }}
+                    className="block w-full py-[10px] px-6 text-center text-[13px] text-[#a8a8b8] transition hover:text-[#e8c468]"
+                  >
+                    {book.title}
+                  </NavLink>
+                ];
+                if (book.buyLinks && book.buyLinks.paperback) {
+                  items.push(
+                    <a
+                      key={`${book.slug}-paperback`}
+                      href={book.buyLinks.paperback}
+                      target="_blank"
+                      rel="noreferrer"
+                      onClick={() => { setMenuOpen(false); setDropdownOpen(false) }}
+                      className="block w-full py-[10px] px-6 text-center text-[13px] text-[#a8a8b8]/70 transition hover:text-[#e8c468]"
+                    >
+                      {book.title} (Paperback)
+                    </a>
+                  );
+                }
+                return items;
+              })}
               {upcoming && (
                 <div className="w-full py-[10px] px-6 text-center text-[13px] text-[#a8a8b8] opacity-50 pointer-events-none">
                   {upcoming.title} <span className="ml-2 text-[10px] uppercase tracking-[0.2em] text-[#e8c468]">(Soon)</span>
