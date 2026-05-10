@@ -19,7 +19,6 @@ function BuyButtonRow({ buyLinks, size = 'sm' }) {
   const buttons = [
     { key: 'amazon', label: 'Amazon', bg: '#1a1a2e', color: '#e8c468', border: 'none' },
     { key: 'goodreads', label: 'Goodreads', bg: '#2d6a4f', color: '#b7e4c7', border: 'none' },
-    { key: 'kindle', label: 'Kindle', bg: '#f5f0e8', color: '#1a1a2e', border: '1px solid #d4c9b0' },
   ]
   const padding = size === 'lg' ? 'px-5 py-3 text-sm' : 'book-card-btn'
 
@@ -106,7 +105,6 @@ function BookDetail() {
             {[
               { key: 'amazon', label: 'Amazon', icon: faAmazon, bg: '#1a1a2e', color: '#e8c468' },
               { key: 'goodreads', label: 'Goodreads', icon: faGoodreads, bg: '#2d6a4f', color: '#b7e4c7' },
-              { key: 'kindle', label: 'Kindle', icon: faAmazon, bg: '#f5f0e8', color: '#1a1a2e', border: '1px solid #d4c9b0' },
             ].map(({ key, label, icon, bg, color, border }) => (
               <a
                 key={key}

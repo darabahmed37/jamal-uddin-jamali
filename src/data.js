@@ -34,7 +34,6 @@ export const data = {
       "buyLinks": {
         "amazon": "https://www.amazon.com/dp/B01DEQYM96",
         "goodreads": "https://www.goodreads.com/book/show/29616382-the-sin-of-killing",
-        "kindle": "#",
         "paperback": "https://www.amazon.com/Sin-Killing-Jamaluddin-Jamali/dp/1540672735"
       },
       "editorialReview": {
@@ -64,8 +63,7 @@ export const data = {
       "coverImage": "https://m.media-amazon.com/images/I/81BRg0LnTfL._SY522_.jpg",
       "buyLinks": {
         "amazon": "https://www.amazon.com/gp/product/B0GWYPZW1Q",
-        "goodreads": "https://www.goodreads.com/book/show/250964584-the-baby-who-brought-the-storm",
-        "kindle": "#"
+        "goodreads": "https://www.goodreads.com/book/show/250964584-the-baby-who-brought-the-storm"
       }
     }
   ],

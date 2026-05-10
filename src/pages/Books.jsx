@@ -97,15 +97,6 @@ function Books() {
                   >
                     Goodreads
                   </a>
-                  <a
-                    href={book.buyLinks?.kindle || '#'}
-                    target="_blank"
-                    rel="noreferrer"
-                    onClick={(e) => e.stopPropagation()}
-                    className="book-card-btn bg-[#f5f0e8] text-[#1a1a2e] border border-[#d4c9b0]"
-                  >
-                    Kindle
-                  </a>
                 </div>
               </div>
             </div>
