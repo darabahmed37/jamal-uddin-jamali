@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { data } from '../data.js'
+import SEO from '../components/SEO'
 
 const contact = data.contact
 const socialLinks = data.social
@@ -55,6 +56,10 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen bg-[#fdfaf5]">
+      <SEO 
+        title="Contact" 
+        description="Get in touch with Jamaluddin Jamali for inquiries, feedback, or to say hello." 
+      />
       {/* ── PAGE HEADING ── */}
       <div className="px-4 py-12 text-center sm:px-6 lg:px-8">
         <motion.div

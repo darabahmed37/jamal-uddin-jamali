@@ -2,6 +2,7 @@ import { useOutletContext, Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAmazon, faGoodreads } from '@fortawesome/free-brands-svg-icons'
+import SEO from '../components/SEO'
 
 const iconMap = {
   Amazon: faAmazon,
@@ -13,6 +14,10 @@ function Books() {
 
   return (
     <section className="space-y-8">
+      <SEO 
+        title="Books" 
+        description="Explore the literary fiction and suspense novels by Jamaluddin Jamali, including The Sin of Killing and The Baby Who Brought the Storm." 
+      />
       <div className="rounded-3xl border border-[#e8e0d0] bg-[#fdfaf5] p-8 shadow-[0_4px_24px_rgba(0,0,0,0.06)]">
         <h1 className="text-3xl font-bold text-[#1a1a2e]">Books by Jamaluddin Jamali</h1>
         <p className="mt-2 text-sm leading-7 text-[#5f5e5a]">Fiction that goes where others don't dare.</p>

@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { data } from '../data.js'
+import SEO from '../components/SEO'
 
 const author = data.author
 
@@ -26,6 +27,10 @@ const reviews = [
 function About() {
   return (
     <div className="space-y-0">
+      <SEO 
+        title="About Jamaluddin Jamali" 
+        description="Biography of Jamaluddin Jamali, Pakistani author of crossover book club fiction, suspense, and literary thrillers." 
+      />
       {/* ── AUTHOR HERO ── */}
       <section className="bg-[#1a1a2e] px-4 py-16 sm:px-6 lg:px-8">
         <motion.div

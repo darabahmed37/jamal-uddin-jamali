@@ -109,7 +109,6 @@ function Footer({ social, books }) {
             <FontAwesomeIcon icon={faCopyright} className="h-3.5 w-3.5" />
             2026 Jamaluddin Jamali. All rights reserved.
           </p>
-          <p>Designed with a clean, minimal author portfolio layout.</p>
         </div>
       </div>
     </footer>

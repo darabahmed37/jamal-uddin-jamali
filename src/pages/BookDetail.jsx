@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { faAmazon, faGoodreads } from '@fortawesome/free-brands-svg-icons'
 import { data } from '../data.js'
+import SEO from '../components/SEO'
 
 // Map store keys to icons; kindle falls back to Amazon icon
 const storeIcons = {
@@ -78,6 +79,10 @@ function BookDetail() {
 
   return (
     <div className="space-y-12 px-4 py-10 sm:px-6 lg:px-8">
+      <SEO 
+        title={book.title} 
+        description={book.shortDescription} 
+      />
 
       {/* ── BACK LINK ── */}
       <Link

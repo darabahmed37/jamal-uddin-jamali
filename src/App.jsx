@@ -5,10 +5,11 @@ import Books from './pages/Books'
 import BookDetail from './pages/BookDetail'
 import About from './pages/About'
 import Contact from './pages/Contact'
+import NotFound from './pages/NotFound'
 
 function App() {
   return (
-    <BrowserRouter basename="/jamal-uddin-jamali">
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<RootLayout />}>
           <Route index element={<Home />} />
@@ -16,6 +17,7 @@ function App() {
           <Route path="books/:slug" element={<BookDetail />} />
           <Route path="about" element={<About />} />
           <Route path="contact" element={<Contact />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>

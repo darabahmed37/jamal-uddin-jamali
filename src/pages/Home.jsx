@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { data } from '../data.js'
+import SEO from '../components/SEO'
 
 function Home() {
   const featured = data.books.find((item) => item.featured)
@@ -8,6 +9,10 @@ function Home() {
 
   return (
     <div className="space-y-0">
+      <SEO 
+        title="Home" 
+        description="Official website of Jamaluddin Jamali, Pakistani literary fiction and suspense author. Explore his books including The Sin of Killing and The Baby Who Brought the Storm." 
+      />
       {/* ── HERO SECTION ── */}
       <section className="px-4 py-10 sm:px-6 lg:px-8 bg-[#fdfaf5]">
         <div className="mx-auto max-w-7xl">
