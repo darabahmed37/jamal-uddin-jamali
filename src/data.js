@@ -63,7 +63,8 @@ export const data = {
       "coverImage": "/images/baby-storm-cover.jpg",
       "buyLinks": {
         "amazon": "https://www.amazon.com/gp/product/B0GWYPZW1Q",
-        "goodreads": "https://www.goodreads.com/book/show/250964584-the-baby-who-brought-the-storm"
+        "goodreads": "https://www.goodreads.com/book/show/250964584-the-baby-who-brought-the-storm",
+        "paperback": "https://www.amazon.com/dp/B0H19ZW9QB"
       }
     }
   ],
