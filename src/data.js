@@ -34,7 +34,9 @@ export const data = {
       "buyLinks": {
         "amazon": "https://www.amazon.com/dp/B01DEQYM96",
         "goodreads": "https://www.goodreads.com/book/show/29616382-the-sin-of-killing",
-        "paperback": "https://www.amazon.com/Sin-Killing-Jamaluddin-Jamali/dp/1540672735"
+        "paperback": "https://www.amazon.com/Sin-Killing-Jamaluddin-Jamali/dp/1540672735",
+        "apple": "https://books.apple.com/no/book/the-sin-of-killing-the-dance-of-changing-winds/id1139871646",
+        "barnesnoble": "https://www.barnesandnoble.com/w/the-sin-of-killing-jamaluddin-jamali/1134375715?ean=9798235401495"
       },
       "editorialReview": {
         "text": "The setting is Pakistan and the book is rich in that country's culture... a great read with a twist in the tail.",

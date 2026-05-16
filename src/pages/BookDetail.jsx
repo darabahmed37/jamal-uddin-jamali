@@ -2,36 +2,41 @@ import { useMemo } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
-import { faAmazon, faGoodreads } from '@fortawesome/free-brands-svg-icons'
+import { faAmazon, faGoodreads, faApple } from '@fortawesome/free-brands-svg-icons'
+import { faArrowLeft, faBookOpen } from '@fortawesome/free-solid-svg-icons'
 import { data } from '../data.js'
 import SEO from '../components/SEO'
 
 // Map store keys to icons; kindle falls back to Amazon icon
 const storeIcons = {
-  amazon: faAmazon,
-  goodreads: faGoodreads,
-  kindle: faAmazon,
+  amazon:      faAmazon,
+  goodreads:   faGoodreads,
+  kindle:      faAmazon,
+  apple:       faApple,
+  barnesnoble: faBookOpen,
 }
 
-// Always render 3 buttons — fallback href="#" if link missing
+// Render buy buttons — only shows stores that have a link in buyLinks
 function BuyButtonRow({ buyLinks, size = 'sm' }) {
-  const buttons = [
-    { key: 'amazon', label: 'Amazon', bg: '#1a1a2e', color: '#e8c468', border: 'none' },
-    { key: 'goodreads', label: 'Goodreads', bg: '#2d6a4f', color: '#b7e4c7', border: 'none' },
+  const allButtons = [
+    { key: 'amazon',      label: 'Amazon',        bg: '#1a1a2e', color: '#e8c468' },
+    { key: 'goodreads',   label: 'Goodreads',      bg: '#2d6a4f', color: '#b7e4c7' },
+    { key: 'apple',       label: 'Apple Books',    bg: '#000000', color: '#ffffff' },
+    { key: 'barnesnoble', label: 'Barnes & Noble', bg: '#1c4e2e', color: '#f5f0e8' },
   ]
+  const buttons = allButtons.filter(({ key }) => buyLinks?.[key])
   const padding = size === 'lg' ? 'px-5 py-3 text-sm' : 'book-card-btn'
 
   if (size === 'lg') {
     return (
       <div className="flex flex-wrap gap-3">
-        {buttons.map(({ key, label, bg, color, border }) => (
+        {buttons.map(({ key, label, bg, color }) => (
           <a
             key={key}
-            href={buyLinks?.[key] || '#'}
+            href={buyLinks[key]}
             target="_blank"
             rel="noreferrer"
-            style={{ background: bg, color, border: border !== 'none' ? border : undefined }}
+            style={{ background: bg, color }}
             className={`inline-flex items-center gap-2 rounded-xl font-semibold transition hover:opacity-80 ${padding}`}
           >
             <FontAwesomeIcon icon={storeIcons[key]} className="h-4 w-4" />
@@ -44,13 +49,13 @@ function BuyButtonRow({ buyLinks, size = 'sm' }) {
 
   return (
     <div className="book-card-buttons">
-      {buttons.map(({ key, label, bg, color, border }) => (
+      {buttons.map(({ key, label, bg, color }) => (
         <a
           key={key}
-          href={buyLinks?.[key] || '#'}
+          href={buyLinks[key]}
           target="_blank"
           rel="noreferrer"
-          style={{ background: bg, color, border: border !== 'none' ? border : undefined }}
+          style={{ background: bg, color }}
           className="book-card-btn transition hover:opacity-80"
         >
           {label}
@@ -103,15 +108,17 @@ function BookDetail() {
           {/* Buy icons below cover */}
           <div className="flex flex-col gap-2">
             {[
-              { key: 'amazon', label: 'Amazon', icon: faAmazon, bg: '#1a1a2e', color: '#e8c468' },
-              { key: 'goodreads', label: 'Goodreads', icon: faGoodreads, bg: '#2d6a4f', color: '#b7e4c7' },
-            ].map(({ key, label, icon, bg, color, border }) => (
+              { key: 'amazon',      label: 'Amazon',           icon: faAmazon,    bg: '#1a1a2e', color: '#e8c468' },
+              { key: 'goodreads',   label: 'Goodreads',         icon: faGoodreads, bg: '#2d6a4f', color: '#b7e4c7' },
+              { key: 'apple',       label: 'Apple Books',       icon: faApple,     bg: '#000000', color: '#ffffff' },
+              { key: 'barnesnoble', label: 'Barnes & Noble',    icon: faBookOpen,  bg: '#1c4e2e', color: '#f5f0e8' },
+            ].filter(({ key }) => book.buyLinks?.[key]).map(({ key, label, icon, bg, color }) => (
               <a
                 key={key}
                 href={book.buyLinks?.[key] || '#'}
                 target="_blank"
                 rel="noreferrer"
-                style={{ background: bg, color, border }}
+                style={{ background: bg, color }}
                 className="flex items-center justify-center gap-2 rounded-lg py-2 text-xs font-semibold transition hover:opacity-80"
               >
                 <FontAwesomeIcon icon={icon} className="h-3.5 w-3.5" />
